@@ -44,7 +44,7 @@ dots.forEach((dot, i) => {
 function startAutoPlay() {
   autoPlayInterval = setInterval(() => {
     moveRight();
-  }, 3000); // change image every 3s
+  }, 3000); // 3s per slide
 }
 
 function resetAutoPlay() {
