@@ -1,51 +1,131 @@
-body{
+body {
     background-color: gray;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80vh;
+    margin: 0;
+    padding: 0;
 }
-.container{
+
+.container {
     display: flex;
     align-items: center;
     gap: 50px;
     flex-direction: column;
 }
-.top{
-   display: flex;
+
+.top {
+    display: flex;
     align-items: center;
-    gap: 50px; 
+    gap: 50px;
 }
-.arrow{
+
+.arrow {
     height: 150px;
     cursor: pointer;
 }
-.right{
+
+.right {
     transform: rotate(180deg);
 }
-.frame{
+
+.frame {
     width: 800px;
+    max-width: 95vw;   /* 🔹 Prevent overflow on small screens */
     height: 500px;
+    max-height: 60vh;  /* 🔹 Adjust height dynamically */
     overflow: hidden;
     box-shadow: -1px 1px 10px rgba(0, 0, 0, .5);
+    border-radius: 10px;
 }
-.slider{
+
+.slider {
     display: flex;
     transition: all 1s ease;
 }
-.image{
+
+.image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.bottom{
+
+.bottom {
     display: flex;
     gap: 30px;
+    flex-wrap: wrap; /* 🔹 Wrap buttons if screen is too small */
+    justify-content: center;
 }
-.button{
+
+.button {
     width: 15px;
     height: 15px;
     border: 1px solid white;
     border-radius: 50%;
     cursor: pointer;
+}
+
+/* 🔹 Responsive tweaks */
+@media (max-width: 1024px) {
+    .frame {
+        width: 90vw;
+        height: 50vh;
+    }
+
+    .arrow {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 30px;
+    }
+
+    .top {
+        gap: 20px;
+    }
+
+    .arrow {
+        height: 80px;
+    }
+
+    .frame {
+        width: 95vw;
+        height: 45vh;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        height: auto; /* Prevent content cutoff */
+    }
+
+    .container {
+        gap: 20px;
+    }
+
+    .top {
+        flex-direction: column; /* Stack arrows + slider */
+        gap: 15px;
+    }
+
+    .arrow {
+        height: 60px;
+    }
+
+    .frame {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .bottom {
+        gap: 15px;
+    }
+
+    .button {
+        width: 12px;
+        height: 12px;
+    }
 }
