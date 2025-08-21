@@ -4,7 +4,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
@@ -12,19 +12,24 @@ body {
 .container {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
 }
 
 .top {
     display: flex;
     align-items: center;
-    gap: 50px;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
 }
 
 /* Arrows */
 .arrow {
-    height: clamp(40px, 10vw, 150px); /* responsive size */
+    height: clamp(30px, 6vw, 80px);
     cursor: pointer;
 }
 
@@ -32,43 +37,39 @@ body {
     transform: rotate(180deg);
 }
 
-/* Frame (main slider box) */
+/* Frame (keeps 16:9 ratio) */
 .frame {
-    width: 800px;
-    max-width: 95vw; /* prevent overflow */
-    height: clamp(200px, 50vh, 500px); /* responsive height */
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
     overflow: hidden;
     box-shadow: -1px 1px 10px rgba(0, 0, 0, .5);
     border-radius: 10px;
+    flex-shrink: 0;
 }
 
-/* Slider images wrapper */
+/* Slider */
 .slider {
     display: flex;
-    transition: all 1s ease;
+    transition: transform 0.8s ease;
+    height: 100%;
 }
 
 /* Images */
 .image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* default: fill frame (cropped edges) */
-}
-
-/* On mobile: show full image without cropping */
-@media (max-width: 768px) {
-    .image {
-        object-fit: contain;
-        background: black; /* neat look if bars appear */
-    }
+    flex-shrink: 0;
+    object-fit: cover; /* neat look */
 }
 
 /* Bottom navigation dots */
 .bottom {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .button {
@@ -77,39 +78,25 @@ body {
     border: 1px solid white;
     border-radius: 50%;
     cursor: pointer;
+    background: transparent;
+    transition: background 0.3s ease;
 }
 
-/* Responsive tweaks */
-@media (max-width: 1024px) {
-    .frame {
-        width: 90vw;
-        height: 50vh;
-    }
+.button.active {
+    background: white;
 }
 
+/* Mobile tweaks */
 @media (max-width: 768px) {
-    .container {
-        gap: 30px;
-    }
     .top {
-        gap: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .arrow {
+        height: clamp(25px, 10vw, 50px);
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        height: auto; /* avoid cutoff */
-    }
-    .container {
-        gap: 20px;
-    }
-    .top {
-        flex-direction: column; /* stack arrows + slider */
-        gap: 15px;
-    }
-    .bottom {
-        gap: 15px;
-    }
-}
 
 
