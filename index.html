@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Image Slider</title>
+  <title>Image Slider</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <div class="top">
-      <img src="left-arrow.png" class="arrow left" alt="Previous">
       <div class="frame">
         <div class="slider">
                 <img src="beach.jpeg" class="image">
@@ -18,8 +17,9 @@
                 <img src="plant.jpeg" class="image">
                 <img src="road.jpeg" class="image">
 </div>
-      </div>
-      <img src="right-arrow.png" class="arrow right" alt="Next">
+      <!-- Arrows inside frame -->
+      <div class="arrow left">&#10094;</div>
+      <div class="arrow right">&#10095;</div>
     </div>
 
     <div class="bottom">
@@ -33,3 +33,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
