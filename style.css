@@ -1,3 +1,4 @@
+/* Base layout */
 body {
     background-color: gray;
     display: flex;
@@ -21,8 +22,9 @@ body {
     gap: 50px;
 }
 
+/* Arrows */
 .arrow {
-    height: 150px;
+    height: clamp(40px, 10vw, 150px); /* responsive size */
     cursor: pointer;
 }
 
@@ -30,51 +32,58 @@ body {
     transform: rotate(180deg);
 }
 
+/* Frame (main slider box) */
 .frame {
     width: 800px;
-    max-width: 95vw;   /* 🔹 Prevent overflow on small screens */
-    height: 500px;
-    max-height: 60vh;  /* 🔹 Adjust height dynamically */
+    max-width: 95vw; /* prevent overflow */
+    height: clamp(200px, 50vh, 500px); /* responsive height */
     overflow: hidden;
     box-shadow: -1px 1px 10px rgba(0, 0, 0, .5);
     border-radius: 10px;
 }
 
+/* Slider images wrapper */
 .slider {
     display: flex;
     transition: all 1s ease;
 }
 
+/* Images */
 .image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* default: fill frame (cropped edges) */
 }
 
+/* On mobile: show full image without cropping */
+@media (max-width: 768px) {
+    .image {
+        object-fit: contain;
+        background: black; /* neat look if bars appear */
+    }
+}
+
+/* Bottom navigation dots */
 .bottom {
     display: flex;
     gap: 30px;
-    flex-wrap: wrap; /* 🔹 Wrap buttons if screen is too small */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .button {
-    width: 15px;
-    height: 15px;
+    width: clamp(8px, 2vw, 15px);
+    height: clamp(8px, 2vw, 15px);
     border: 1px solid white;
     border-radius: 50%;
     cursor: pointer;
 }
 
-/* 🔹 Responsive tweaks */
+/* Responsive tweaks */
 @media (max-width: 1024px) {
     .frame {
         width: 90vw;
         height: 50vh;
-    }
-
-    .arrow {
-        height: 100px;
     }
 }
 
@@ -82,50 +91,25 @@ body {
     .container {
         gap: 30px;
     }
-
     .top {
         gap: 20px;
-    }
-
-    .arrow {
-        height: 80px;
-    }
-
-    .frame {
-        width: 95vw;
-        height: 45vh;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        height: auto; /* Prevent content cutoff */
+        height: auto; /* avoid cutoff */
     }
-
     .container {
         gap: 20px;
     }
-
     .top {
-        flex-direction: column; /* Stack arrows + slider */
+        flex-direction: column; /* stack arrows + slider */
         gap: 15px;
     }
-
-    .arrow {
-        height: 60px;
-    }
-
-    .frame {
-        width: 100%;
-        height: 40vh;
-    }
-
     .bottom {
         gap: 15px;
     }
-
-    .button {
-        width: 12px;
-        height: 12px;
-    }
 }
+
+
